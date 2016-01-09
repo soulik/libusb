@@ -48,11 +48,11 @@
 #endif
 
 #if defined(__CYGWIN__ )
-#define _stricmp stricmp
+#define _stricmp strcasecmp
 #define _snprintf snprintf
 #define _strdup strdup
 // _beginthreadex is MSVCRT => unavailable for cygwin. Fallback to using CreateThread
-#define _beginthreadex(a, b, c, d, e, f) CreateThread(a, b, (LPTHREAD_START_ROUTINE)c, d, e, f)
+#define _beginthreadex(a, b, c, d, e, f) CreateThread(a, b, (LPTHREAD_START_ROUTINE)c, d, e, (LPDWORD)f)
 #endif
 
 #define MAX_CTRL_BUFFER_LENGTH      4096
@@ -304,7 +304,7 @@ struct windows_transfer_priv {
 // used to match a device driver (including filter drivers) against a supported API
 struct driver_lookup {
 	char list[MAX_KEY_LENGTH+1];// REG_MULTI_SZ list of services (driver) names
-	const DWORD reg_prop;		// SPDRP registry key to use to retreive list
+	const DWORD reg_prop;		// SPDRP registry key to use to retrieve list
 	const char* designation;	// internal designation (for debug output)
 };
 
