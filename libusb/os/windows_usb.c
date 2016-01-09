@@ -703,6 +703,11 @@ static int windows_assign_endpoints(struct libusb_device_handle *dev_handle, int
 		return r;
 	}
 
+	// Check for valid interface
+	if (iface >= conf_desc->bNumInterfaces){
+		return LIBUSB_ERROR_NOT_FOUND;
+	}
+
 	if_desc = &conf_desc->interface[iface].altsetting[altsetting];
 	safe_free(priv->usb_interface[iface].endpoint);
 
