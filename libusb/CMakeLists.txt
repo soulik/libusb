@@ -40,6 +40,8 @@ elseif(UNIX)
 		os/poll_posix.h
 		os/threads_posix.h
 	)
+	configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.cmake" "${CMAKE_CURRENT_BINARY_DIR}/config.h")
+	include_directories(${CMAKE_CURRENT_BINARY_DIR})
 endif()
 
 add_library(libusb SHARED
