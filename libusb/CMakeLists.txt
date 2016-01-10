@@ -42,6 +42,10 @@ elseif(UNIX)
 	)
 	configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.cmake" "${CMAKE_CURRENT_BINARY_DIR}/config.h")
 	include_directories(${CMAKE_CURRENT_BINARY_DIR})
+	list(APPEND libusb_LIBRARIES
+		pthread
+		udev
+	)
 endif()
 
 add_library(libusb SHARED
@@ -63,7 +67,7 @@ set_target_properties(libusb
 )
 
 target_link_libraries (libusb
-	${SDL2_LIBRARIES}
+	${libusb_LIBRARIES}
 )
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY build)
