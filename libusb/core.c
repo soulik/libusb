@@ -2448,8 +2448,11 @@ DEFAULT_VISIBILITY const char * LIBUSB_CALL libusb_error_name(int error_code)
  * Returns a pointer to const struct libusb_version with the version
  * (major, minor, micro, nano and rc) of the running library.
  */
+
 DEFAULT_VISIBILITY
 const struct libusb_version * LIBUSB_CALL libusb_get_version(void)
 {
 	return &libusb_version_internal;
 }
+
+
